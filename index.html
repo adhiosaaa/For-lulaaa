@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Ucapan Ultah Buat Lula</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #ffdde1, #ee9ca7);
+      color: #333;
+      text-align: center;
+      padding: 40px;
+      overflow-x: hidden;
+    }
+    .card {
+      background: white;
+      border-radius: 20px;
+      padding: 30px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      max-width: 600px;
+      margin: auto;
+    }
+    h1 {
+      color: #e91e63;
+    }
+    .question {
+      font-size: 18px;
+      margin: 20px 0;
+    }
+    button {
+      background: #e91e63;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: 16px;
+      margin-top: 20px;
+    }
+    button:hover {
+      background: #d81b60;
+    }
+    .answer {
+      margin-top: 15px;
+      font-style: italic;
+      color: #444;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>🎉 Quiz Persahabatan 🎉</h1>
+    <div id="quiz"></div>
+    <button id="nextBtn">Next ➡️</button>
+  </div>
+
+  <!-- Musik ulang tahun -->
+  <audio id="music" loop>
+    <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+  </audio>
+
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+  <script>
+    const questions = [
+      {
+        q: "Siapa yang ajak kawan luan?",
+        options: ["Ice Princess Rachel", "Lula Cool n Hot"],
+        a: "Lupa jujur xixixi"
+      },
+      {
+        q: "Menurutmu aku anggap Lula itu orang seperti apa?",
+        options: ["Cutie pie huney bunny", "Hot baddas and spicy"],
+        a: `Lula yang awalnya ku kenal adalah sosok pemalu yang gamau main keluar,
+        namun dia adalah sosok yang keren, aku banyak belajar dari interest nya
+        yang banyak sekali mulai dari bahasa inggrisnya, bahasa korea nya,
+        pengetahuan tentang twitter, dan hebatnya bisa masuk farmasi USU dan bahkan
+        bisa bertahan sampai sekarang.`
+      },
+      {
+        q: "Apa harapanku untuk Lula?",
+        options: ["Sehat & panjang umur", "Karir sukses & bahagia"],
+        a: "Semoga panjang umur dan sehat selalu, lancar kuliah, karir kedepannya, dan tergapai cita dan cinta yang baik untukmu yaaa 💕"
+      },
+      {
+        q: "Persahabatan kita gimana?",
+        options: ["Long lasting", "Sampai tua"],
+        a: "Semoga long lasting perkumpulan kita berdua ini menjadi sebuah persahabatan yang membawa kebaikan dan kebahagiaan bagi kita."
+      },
+      {
+        q: "Pesan terakhir buat Lula?",
+        options: ["Tetap kuat ya!", "Makasih sudah jadi temen gue"],
+        a: "Tetaplah kuat karena menjadi lemah artinya ga kuat, makasih ya udah jadi temen gue, semoga kamu segera paham betapa imut nya aku 😘"
+      }
+    ];
+
+    let index = 0;
+    const quizDiv = document.getElementById("quiz");
+    const nextBtn = document.getElementById("nextBtn");
+    const music = document.getElementById("music");
+
+    function showQuestion() {
+      if (index < questions.length) {
+        const q = questions[index];
+        quizDiv.innerHTML = `
+          <div class="question">${q.q}</div>
+          <div>${q.options.map((opt, i) => `<p>⭐ ${opt}</p>`).join("")}</div>
+          <div class="answer">👉 ${q.a}</div>
+        `;
+      } else {
+        quizDiv.innerHTML = `
+          <h2>🎂 Happy Birthday Lula 🎂</h2>
+          <p>Selamat ulang tahun ya syankku! Semoga sukses, sehat, bahagia, dan penuh cinta. 
+          Ciintaku pdaamuuu ❤️</p>
+        `;
+        nextBtn.style.display = "none";
+        launchConfetti();
+        music.play();
+      }
+    }
+
+    function launchConfetti() {
+      const duration = 5 * 1000;
+      const end = Date.now() + duration;
+
+      (function frame() {
+        confetti({
+          particleCount: 5,
+          angle: 60,
+          spread: 55,
+          origin: { x: 0 }
+        });
+        confetti({
+          particleCount: 5,
+          angle: 120,
+          spread: 55,
+          origin: { x: 1 }
+        });
+        if (Date.now() < end) {
+          requestAnimationFrame(frame);
+        }
+      }());
+    }
+
+    nextBtn.addEventListener("click", () => {
+      index++;
+      showQuestion();
+    });
+
+    showQuestion();
+  </script>
+</body>
+</html>
+
